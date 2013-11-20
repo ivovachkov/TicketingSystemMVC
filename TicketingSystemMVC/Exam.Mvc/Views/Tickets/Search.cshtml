@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Exam.Mvc.Models.TicketViewModel>
+@{
+    ViewBag.Title = "Search results";
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    @foreach (var ticket in Model)
+    {
+        @Html.Partial("_Ticket", ticket)
+    }
+</div>

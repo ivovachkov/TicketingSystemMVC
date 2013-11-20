@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Categories Administration";
+}
+<h2>@ViewBag.Title</h2>
+
+@(Html.Kendo().Grid<Exam.Mvc.Models.CategoryViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Name);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Title("Commands");
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .ToolBar(toolbar => toolbar.Create())
+    .Pageable()
+    .Sortable()
+    .Filterable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(5)
+        .ServerOperation(true)
+        .Model(model => model.Id(p => p.Id))
+        .Create(create => create.Action("Create", "CategoriesAdmin"))
+        .Read(read => read.Action("Read", "CategoriesAdmin"))
+        .Update(update => update.Action("Update", "CategoriesAdmin"))
+        .Destroy(update => update.Action("Destroy", "CategoriesAdmin"))
+    )
+)
+

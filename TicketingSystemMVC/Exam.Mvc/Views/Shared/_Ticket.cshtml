@@ -1,0 +1,11 @@
+﻿@model Exam.Mvc.Models.TicketViewModel
+
+<div class="span4">
+    <h2>@Model.Title</h2>
+    <div><strong>Category: </strong>@Model.CategoryName</div>
+    <div><strong>Author: </strong>@Model.AuthorName</div>
+    <div>@Model.NumberOfComments comment(s)</div>
+    <a href="@Url.Action("Details", "Tickets", new { id = Model.Id })" class="btn">
+        More Details...
+    </a>
+</div>

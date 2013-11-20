@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Exam.Mvc.Models.TicketViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    @foreach (var ticket in Model)
+    {
+        @Html.Partial("_Ticket", ticket)
+    }
+</div>

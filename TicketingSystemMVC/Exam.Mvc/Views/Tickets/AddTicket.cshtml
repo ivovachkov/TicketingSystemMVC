@@ -1,0 +1,65 @@
+﻿@model Exam.Models.Ticket
+@{
+    ViewBag.Title = "AddTicket";
+}
+<h2>AddTicket</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.CategoryId, "Category", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("CategoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CategoryId, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Priority, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Priority,
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Low", Value = "0" },
+                        new SelectListItem { Text = "Medium", Value = "1", Selected = true },
+                        new SelectListItem { Text = "High", Value = "2" },
+                    })
+                @Html.ValidationMessageFor(model => model.Priority, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.ScreenshotUrl, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.ScreenshotUrl)
+                @Html.ValidationMessageFor(model => model.ScreenshotUrl, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Add ticket" class="btn" />
+        </div>
+    </fieldset>
+}
+
